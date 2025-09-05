@@ -1,0 +1,229 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Network</title>
+    <!-- We'll use Tailwind CSS for modern styling without writing lots of custom CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a nice, clean look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* A little bit of custom CSS for the active link and font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A light gray background */
+        }
+        .nav-link.active {
+            color: #1d4ed8; /* A deep blue for the active link */
+            border-bottom: 2px solid #1d4ed8;
+        }
+        /* Simple transition for smooth section switching */
+        .content-section {
+            display: none; /* Hide all sections by default */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .content-section.active {
+            display: block; /* Show only the active section */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-700">Alumni Network</a>
+            <ul class="flex items-center space-x-6">
+                <!-- Navigation links. The 'data-target' attribute tells our JS which section to show -->
+                <li><a href="#" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300 pb-1 active" data-target="home">Home</a></li>
+                <li><a href="#" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300 pb-1" data-target="register">Register</a></li>
+                <li><a href="#" class="nav-link text-gray-600 hover:text-blue-700 transition duration-300 pb-1" data-target="about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <div class="text-center bg-white p-12 rounded-lg shadow-lg">
+                 <h1 class="text-5xl font-bold text-gray-800 mb-4">Welcome Back, Alumni!</h1>
+                 <p class="text-xl text-gray-600 mb-8">Reconnect with classmates, expand your professional network, and stay updated on the latest news and events.</p>
+                 <button id="join-now-btn" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                     Join Now
+                 </button>
+            </div>
+            <div class="mt-12 grid md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-lg shadow">
+                    <h3 class="text-2xl font-semibold mb-2">Events</h3>
+                    <p class="text-gray-600">Find out about upcoming reunions, workshops, and networking mixers.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow">
+                    <h3 class="text-2xl font-semibold mb-2">Directory</h3>
+                    <p class="text-gray-600">Search for old friends and make new connections in our alumni directory.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow">
+                    <h3 class="text-2xl font-semibold mb-2">Get Involved</h3>
+                    <p class="text-gray-600">Discover mentoring opportunities and ways to give back to your community.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register" class="content-section">
+            <div class="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6">Join the Alumni Network</h2>
+                <p class="text-center text-gray-600 mb-8">Fill out the form below to create your profile and get connected.</p>
+                <form id="registration-form" novalidate>
+                    <div class="mb-5">
+                        <label for="name" class="block mb-2 font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-5">
+                        <label for="email" class="block mb-2 font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-5">
+                        <label for="gradYear" class="block mb-2 font-medium text-gray-700">Graduation Year</label>
+                        <input type="number" id="gradYear" name="gradYear" min="1950" max="2024" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-8">
+                        <label for="major" class="block mb-2 font-medium text-gray-700">Major / Field of Study</label>
+                        <input type="text" id="major" name="major" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Register
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="content-section">
+            <div class="max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-lg">
+                <h2 class="text-4xl font-bold text-center mb-6">About Our Alumni Association</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Founded with the vision to foster a lifelong connection between the institution and its graduates, our Alumni Association serves as a vibrant hub for all former students. We are dedicated to building a strong, engaged community that supports one another long after graduation day.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Our mission is to provide valuable resources, facilitate professional networking opportunities, and celebrate the achievements of our diverse alumni body. Through events, newsletters, and online platforms, we aim to keep you informed, involved, and inspired.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Whether you graduated last year or decades ago, you are an integral part of our history and our future. Join us in strengthening these bonds and creating new memories.
+                </p>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- A simple message box for form submission feedback, hidden by default -->
+    <div id="success-message" class="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-xl opacity-0 transition-opacity duration-500">
+        Registration successful! Welcome.
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2024 Alumni Network. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- JavaScript for page interactivity ---
+
+        // Wait for the entire page to load before running the script
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all navigation links and content sections
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            // Find the button on the homepage
+            const joinNowBtn = document.getElementById('join-now-btn');
+
+            // Function to handle showing the correct section
+            const showSection = (targetId) => {
+                // Remove 'active' class from all nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Hide all sections
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Find the clicked link and add the 'active' class
+                const activeLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+
+                // Find the target section and show it
+                const activeSection = document.getElementById(targetId);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                }
+            };
+            
+            // Add a click event listener to each navigation link
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent the link from trying to navigate away
+                    const targetId = link.getAttribute('data-target'); // Get the target section ID
+                    showSection(targetId);
+                });
+            });
+            
+            // Make the "Join Now" button on the homepage switch to the register tab
+            if (joinNowBtn) {
+                joinNowBtn.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showSection('register');
+                });
+            }
+
+            // --- Handle the registration form submission ---
+            const form = document.getElementById('registration-form');
+            const successMessage = document.getElementById('success-message');
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault(); // Stop the form from submitting the traditional way
+
+                // Simple validation check
+                if (form.checkValidity()) {
+                    // Show the success message
+                    successMessage.classList.remove('opacity-0');
+
+                    // Hide the message after 3 seconds
+                    setTimeout(() => {
+                        successMessage.classList.add('opacity-0');
+                    }, 3000);
+
+                    // Reset the form fields
+                    form.reset();
+                    
+                    // Optional: Switch back to the home page after successful registration
+                    setTimeout(() => {
+                        showSection('home');
+                    }, 500);
+
+                } else {
+                    // This is where you could add more detailed error messages if needed
+                    form.reportValidity();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
